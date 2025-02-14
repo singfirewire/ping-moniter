@@ -56,16 +56,14 @@ String getLocalDateTime()
 
 void updateLED() {
   // ปิดไฟ LED ทั้งหมดก่อน
-  digitalWrite(RED_PIN, LOW);
-  digitalWrite(GREEN_PIN, LOW);
-  digitalWrite(BLUE_PIN, LOW);
+  digitalWrite(RED_PIN, HIGH);
+  digitalWrite(GREEN_PIN, HIGH);
+  digitalWrite(BLUE_PIN, HIGH);
   
-  if(lastPingTime < 50) {
-    digitalWrite(GREEN_PIN, HIGH);  // สีเขียว เมื่อ ping < 50ms
-  } else if(lastPingTime >= 200 && lastPingTime < 300) {
-    digitalWrite(BLUE_PIN, HIGH);   // สีน้ำเงิน เมื่อ ping 200-299ms
-  } else if(lastPingTime >= 300) {
-    digitalWrite(RED_PIN, HIGH);    // สีแดง เมื่อ ping >= 300ms
+  if (lastPingTime < 35) {
+    digitalWrite(GREEN_PIN, LOW);  // สีเขียว เมื่อ ping < 50ms
+  } else if (lastPingTime > 200) {
+    digitalWrite(RED_PIN, LOW);    // สีแดง เมื่อ ping > 200ms
   }
 }
 
